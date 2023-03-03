@@ -12,8 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-        <!-- Font-awesome -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 </head>
 
 <body class="m-5">
@@ -28,33 +28,86 @@
         </div>
     </header>
 
-    <!-- Card Section Here -->
+    <main>
 
-    <section>
-        <div id="cards-container" class="row row-cols-1 row-cols-md-3 g-3">
-        </div>
+        <!-- Card Section Here -->
 
-
-        <div id="btn-seeMore" onclick="sowMoreCard()" class="d-none text-center mt-3">
-            <button type="button" class="btn btn-primary ">See More</button>
-        </div>
-    </section>
-
-    <!-- Spinner Section here -->
-
-    <section id="loader" class="d-none">
-
-        <div style="height: 400px;" class="d-flex justify-content-center align-items-center">
-            <div class="spinner-border text-primary" role="status">
-              <span class="visually-hidden">Loading...</span>
+        <section>
+            <div id="cards-container" class="row row-cols-1 row-cols-md-3 g-3">
             </div>
-          </div>
-
-    </section>
 
 
-    
-    
+            <div id="btn-seeMore" onclick="sowMoreCard()" class="d-none text-center mt-3">
+                <button type="button" class="btn btn-primary ">See More</button>
+            </div>
+        </section>
+
+        <!-- Spinner Section here -->
+
+        <section id="loader" class="d-none">
+
+            <div style="height: 400px;" class="d-flex justify-content-center align-items-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Modal part here -->
+        <section>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-danger rounded-circle " data-bs-dismiss="modal">X</button>
+                        </div>
+                        <div class="modal-body">
+
+                            <!-- Modal card  -->
+
+                            <div class="row row-cols-1 row-cols-md-2 g-4">
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <img src="..." class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">This is a longer card with supporting text below as a
+                                                natural lead-in to additional content. This content is a little bit
+                                                longer.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <img src="..." class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">This is a short card.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section>
+
+    </main>
+
+
+
+
 
     <!-- JavaScript -->
     <script src="js/backcode.js"></script>

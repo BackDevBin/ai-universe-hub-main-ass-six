@@ -69,7 +69,7 @@ const displayCard = (cards,cardsContainerTag) => {
                 <p class="card-text"><i class="fa fa-calendar-days"></i> ${card.published_in}</p>
             </div>
             <div>
-                <button type="button" class="btn btn-light rounded-circle"><i class="fa fa-arrow-right"></i></button>
+                <button type="button" class="btn btn-light rounded-circle"data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-arrow-right"></i></button>
             </div>
         </div>
     </div>

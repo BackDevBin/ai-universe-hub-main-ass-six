@@ -122,7 +122,7 @@ cardDataLoad();
 // API Single card data display
 
 const ModalDataDisplay = (cards) => {
-    console.log(cards)
+    
     const ModalCardContainerTag = document.getElementById('ModalCardContainer');
     ModalCardContainerTag.textContent ='';
     const ModalCardDiv = document.createElement('div');
@@ -163,10 +163,12 @@ const ModalDataDisplay = (cards) => {
       </div>
   <div class="col">
    <div class="card h-100">
-       <img src="${cards.image_link[0]}" class="img-fluid m-2 rounded" alt="...">
+   <div style="position: relative; width: 100%;">
+   <img src="${cards.image_link[0]}" class="img-fluid rounded" alt="...">
+  <button type="button" class="btn btn-primary position-absolute top-0 end-0">${cards.accuracy.score ? cards.accuracy.score : '0.0'}% accuracy</button>
+</div>
       <div class="card-body text-center">
-      <button type="button" class="btn btn-primary ">${cards.accuracy.score}% accuracy</button>
-       <h5 class="card-title">${cards.input_output_examples[0].input ? cards.input_output_examples[0].input : ''}</h5>
+       <h5 class="card-title mt-5">${cards.input_output_examples[0].input ? cards.input_output_examples[0].input : ''}</h5>
        <p class="card-text">${cards.input_output_examples[0].output ? cards.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
   </div>
     </div>
@@ -174,7 +176,9 @@ const ModalDataDisplay = (cards) => {
                         
  </div>
     `
-
+    
+    
+    
     ModalCardContainerTag.appendChild(ModalCardDiv);
 }
 

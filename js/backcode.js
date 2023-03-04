@@ -111,18 +111,18 @@ const ModalDataDisplay = (cards) => {
 
      <h5 class="card-title m-3">${cards.description}</h5>
                 <div class="card-body d-flex justify-content-around text-center">
-            <p style="color: #03A30A; font-weight: 700;" class="card-text h-100 bg-white rounded-4 p-2 me-3">  ${cards.pricing[0].price} ${cards.pricing[0].plan}</p>
-         <p style="color: #F28927; font-weight: 700;" class="card-text  h-100 bg-white rounded-4 p-2 me-3">  ${cards.pricing[1].price} ${cards.pricing[1].plan} </p>
-              <p style="color: #EB5757; font-weight: 700;" class="card-text  h-100 bg-white rounded-4 p-2">  ${cards.pricing[2].price} ${cards.pricing[2].plan} </p>
+            <p style="color: #03A30A; font-weight: 700;" class="card-text h-100 bg-white rounded-4 p-2 me-3">  ${cards.pricing[0].price ? cards.pricing[0].price : 'Free of Cost'} ${cards.pricing[0].plan ? cards.pricing[0].plan :'/Basic'}</p>
+         <p style="color: #F28927; font-weight: 700;" class="card-text  h-100 bg-white rounded-4 p-2 me-3">  ${cards.pricing[1].price ? cards.pricing[0].price : 'Free of Cost'} ${cards.pricing[1].plan ? cards.pricing[1].plan : '/Pro'} </p>
+              <p style="color: #EB5757; font-weight: 700;" class="card-text  h-100 bg-white rounded-4 p-2">  ${cards.pricing[2].price ? cards.pricing[2].price : 'Free of Cost'} ${cards.pricing[2].plan ? cards.pricing[2].plan : '/Enterprise'} </p>
        </div>
 
          <div class="card-body d-flex justify-content-between">
          <div>
        <h5 class="card-title">Features</h5>
         
-   <li>${cards.features[1].feature_name}</li>
-   <li>${cards.features[2].feature_name}</li>
-   <li>${cards.features[3].feature_name}</li>
+   <li>${cards.features[1].feature_name ? cards.features[1].feature_name : "No Data Found"}</li>
+   <li>${cards.features[2].feature_name ? cards.features[2].feature_name : "No Data Found"}</li>
+   <li>${cards.features[3].feature_name ? cards.features[3].feature_name : "No Data Found"}</li>
         
 
        </div>
@@ -130,9 +130,9 @@ const ModalDataDisplay = (cards) => {
          <div>
        <h5 class="card-title">Integrations</h5>
                
-             <li>${cards.integrations[0]}</li>
-            <li>${cards.integrations[1]}</li>
-            <li>${cards.integrations[2]}</li>
+             <li>${cards.integrations[0] ? cards.integrations[0] : "No Data Found"}</li>
+            <li>${cards.integrations[1] ? cards.integrations[1] : "No Data Found"}</li>
+            <li>${cards.integrations[2] ? cards.integrations[2] : "No Data Found"}</li>
        
       </div>
                                     
@@ -143,8 +143,9 @@ const ModalDataDisplay = (cards) => {
    <div class="card h-100">
        <img src="${cards.image_link[0]}" class="img-fluid m-2 rounded" alt="...">
       <div class="card-body text-center">
-       <h5 class="card-title">${cards.input_output_examples[0].input}</h5>
-       <p class="card-text">${cards.input_output_examples[0].output}</p>
+      <button type="button" class="btn btn-primary ">${cards.accuracy.score}% accuracy</button>
+       <h5 class="card-title">${cards.input_output_examples[0].input ? cards.input_output_examples[0].input : ''}</h5>
+       <p class="card-text">${cards.input_output_examples[0].output ? cards.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
   </div>
     </div>
    </div>

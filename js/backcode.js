@@ -1,8 +1,10 @@
-// console.log(spinnerTag)
+// Global Variable
+
+let btnClick = 0 , sortBtnClick = 0;
+const cardsContainerTag = document.getElementById('cards-container');
+const btnSeeMoreTag = document.getElementById('btn-seeMore');
 
 //  Spinner Loader Function 
-
-let btnClick = 0;
 
 const toggleSpinner = isloading => {
     const spinnerTag = document.getElementById('loader');
@@ -22,35 +24,68 @@ toggleSpinner(true);
 const cardDataLoad = () => {
     fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then(response => response.json())
-        .then(cards => DivideCardsByTwoPart(cards.data.tools))
+        .then(cards =>keepCardArray(cards.data.tools))
+}
+
+//  Fetch : API Data Loader Function for Single card
+
+const ModalDataLoad = (id) => {
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
+    fetch(url)
+        .then(response => response.json())
+        .then(cards => ModalDataDisplay(cards.data))
 }
 
 
-// Divide Cards Array By Two Part
+//  Sorted card Array Function
 
+ const customSort = (a,b) => {
+    const dateA = new Date (a.published_in);
+    const dateB = new Date (b.published_in);
 
-const DivideCardsByTwoPart = (cards) => {
-
-    const cardsContainerTag = document.getElementById('cards-container');
-    const btnSeeMoreTag = document.getElementById('btn-seeMore');
-
-    const lastSixCards = cards.slice(6, 12);
-    if (btnClick === 1) {
-        btnSeeMoreTag.classList.add('d-none');
-        return displayCard(lastSixCards, cardsContainerTag);
+    if(dateA < dateB){
+        return 1;
+    }else if(dateA > dateB){
+        return -1;
+    }else{
+         return 0;
     }
 
-    const firstSixCards = cards.slice(0, 6);
-    displayCard(firstSixCards, cardsContainerTag);
+ }
+
+//  Keep Cards , slice and Conditional Call Function
+ 
+ const keepCardArray = cards =>{
+    const fullCard = cards;
+    let firstSixCards = cards.slice(0, 6);
+    displayCard(firstSixCards);
     toggleSpinner(false);
 
+    if(sortBtnClick === 1 && btnClick === 1){
+        cardsContainerTag.textContent = '';
+        const sortedCard = fullCard.sort(customSort);
+        btnClick =0;
+        sortBtnClick=0;
+        return displayCard(sortedCard);
+    }  
+    if(sortBtnClick === 1 && btnClick === 0){
+        cardsContainerTag.textContent = '';
+       firstSixCards = firstSixCards.sort(customSort);
+       sortBtnClick =0;
+       return displayCard(firstSixCards);
+    }  
+    if (btnClick === 1) {
+        cardsContainerTag.textContent = '';
+        btnSeeMoreTag.classList.add('d-none');
+        return displayCard(fullCard);
+    }
 
-    btnSeeMoreTag.classList.remove('d-none');
-}
+ } 
+
 
 // API Data Display Function
 
-const displayCard = (cards, cardsContainerTag) => {
+const displayCard = (cards) => {
 
     cards.forEach(card => {
         const cardDiv = document.createElement('div');
@@ -83,21 +118,8 @@ const displayCard = (cards, cardsContainerTag) => {
 
 cardDataLoad();
 
-const sowMoreCard = () => {
-    btnClick = btnClick + 1;
 
-    if (btnClick === 1) {
-        cardDataLoad();
-    }
-
-}
-
-const ModalDataLoad = (id) => {
-    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
-    fetch(url)
-        .then(response => response.json())
-        .then(cards => ModalDataDisplay(cards.data))
-}
+// API Single card data display
 
 const ModalDataDisplay = (cards) => {
     console.log(cards)
@@ -156,10 +178,22 @@ const ModalDataDisplay = (cards) => {
     ModalCardContainerTag.appendChild(ModalCardDiv);
 }
 
-const cardDetailsBtn = (id) => {
 
-    
-    //console.log(id);
+//  ALL Button Listener Here
+
+const sortDateBtn = () => {
+    sortBtnClick = 1;
+    cardDataLoad();
+
+}
+
+const cardDetailsBtn = (id) => {
    ModalDataLoad(id);
+}
+
+const sowMoreCard = () => {
+    btnClick = 1;
+    cardDataLoad();
+
 }
 

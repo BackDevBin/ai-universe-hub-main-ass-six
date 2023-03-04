@@ -138,7 +138,7 @@ const ModalDataDisplay = (cards) => {
               <p style="color: #EB5757; font-weight: 700;" class="card-text  h-100 bg-white rounded-4 p-2">  ${cards.pricing[2].price ? cards.pricing[2].price : 'Free of Cost'} ${cards.pricing[2].plan ? cards.pricing[2].plan : '/Enterprise'} </p>
        </div>
 
-         <div class="card-body d-flex justify-content-between">
+         <div style="font-size: smaller;" class="card-body d-flex justify-content-between">
          <div>
        <h5 class="card-title">Features</h5>
         

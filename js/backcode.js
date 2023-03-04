@@ -165,7 +165,7 @@ const ModalDataDisplay = (cards) => {
    <div class="card h-100">
    <div style="position: relative; width: 100%;">
    <img src="${cards.image_link[0]}" class="img-fluid rounded" alt="...">
-  <button type="button" class="btn btn-primary position-absolute top-0 end-0">${cards.accuracy.score ? cards.accuracy.score : '0.0'}% accuracy</button>
+  <button type="button" id ="accuracy-btn" class="btn btn-primary position-absolute top-0 end-0">${cards.accuracy.score ? cards.accuracy.score : '0.0'}% accuracy</button>
 </div>
       <div class="card-body text-center">
        <h5 class="card-title mt-5">${cards.input_output_examples[0].input ? cards.input_output_examples[0].input : ''}</h5>
@@ -177,9 +177,13 @@ const ModalDataDisplay = (cards) => {
  </div>
     `
     
-    
-    
     ModalCardContainerTag.appendChild(ModalCardDiv);
+ 
+    if(cards.accuracy.score === null){
+        const accuracyBtnTag = document.getElementById('accuracy-btn');
+        accuracyBtnTag.classList.add('d-none');
+    }
+
 }
 
 
